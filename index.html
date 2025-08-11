@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Raspador de Livros (books.toscrape.com)</title>
+  <!-- Link para o Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Configuração do Tailwind para usar fontes Inter e arredondamento -->
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    /* Estilos personalizados para o grid e produtos, substituindo ou complementando style.css */
+    #results {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Ajustado para livros */
+      gap: 16px;
+      margin-top: 24px;
+    }
+    .product {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 16px;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      background-color: #ffffff;
+      transition: transform 0.2s ease-in-out;
+    }
+    .product:hover {
+      transform: translateY(-5px);
+    }
+    .product img {
+      max-width: 100%;
+      height: 200px; /* Altura fixa para as imagens de capa */
+      object-fit: contain;
+      border-radius: 8px;
+      margin-bottom: 12px;
+    }
+    .product h3 {
+      font-size: 1rem; /* Títulos de livros podem ser mais longos, ajuste o tamanho */
+      font-weight: 600;
+      color: #1a202c;
+      text-align: center;
+      margin-bottom: 8px;
+      min-height: 48px; /* Altura mínima para títulos longos */
+      display: -webkit-box;
+      -webkit-line-clamp: 2; /* Limita a 2 linhas */
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .product p {
+      font-size: 0.9rem;
+      color: #4a5568;
+      text-align: center;
+      margin-bottom: 4px;
+    }
+    .product .price {
+      font-size: 1.15rem; /* Tamanho do preço */
+      font-weight: 700;
+      color: #2f855a;
+      margin-top: 8px;
+    }
+    .loading-message, .no-results-message, .error-message {
+      text-align: center;
+      font-size: 1rem;
+      color: #4a5568;
+      padding: 20px;
+    }
+    .error-message {
+      color: #e53e3e;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 p-6 flex flex-col items-center min-h-screen">
+  <div class="container bg-white p-8 rounded-xl shadow-lg w-full max-w-3xl">
+    <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">Raspador de Livros (books.toscrape.com)</h1>
+    
+    <div id="messageBox" class="hidden bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg relative mb-4" role="alert">
+      <span class="block sm:inline" id="messageText"></span>
+      <span class="absolute top-0 bottom-0 right-0 px-4 py-3 cursor-pointer" id="closeMessageBox">
+        <svg class="fill-current h-6 w-6 text-green-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Fechar</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.196l-2.651 2.652a1.2 1.2 0 1 1-1.697-1.697L8.303 9.5l-2.651-2.651a1.2 1.2 0 1 1 1.697-1.697L10 7.803l2.651-2.651a1.2 1.2 0 0 1 1.697 1.697L11.696 9.5l2.652 2.651a1.2 1.2 0 0 1 0 1.698z"/></svg>
+      </span>
+    </div>
+
+    <!-- Removido o input de keyword, pois a raspagem agora é direta da página principal -->
+    <button id="loadBooks" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300 ease-in-out shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75">
+      Carregar Livros
+    </button>
+    <div id="results" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-8">
+      <!-- Resultados da raspagem serão inseridos aqui -->
+    </div>
+  </div>
+  <script type="module" src="./main.js"></script>
+</body>
+</html>

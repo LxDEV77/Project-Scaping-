@@ -1,0 +1,22 @@
+/*
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 20px;
+}
+
+
+/* Estilos para as mensagens de feedback, para garantir que funcionem */
+.loading-message, .no-results-message, .error-message {
+  text-align: center;
+  font-size: 1rem;
+  color: #4a5568;
+  padding: 20px;
+  grid-column: 1 / -1; 
+}
+
+.error-message {
+  color: #e53e3e;
+  font-weight: 500;
+}
